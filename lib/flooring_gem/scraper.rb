@@ -17,11 +17,12 @@ class FlooringGem::Scraper
     cities = doc.css("h3")
 
     cities.map do |name|
-      city_names << name.text.strip
+        city_names << name.text.strip
     end
 
+    city_names.delete("\u00A0")
+    city_names.delete("")
     city_names
-
   end
 
 end
