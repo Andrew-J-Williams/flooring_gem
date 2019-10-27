@@ -2,7 +2,9 @@ class FlooringGem::CLI
 
   def call
     puts "Welcome to Craftsmen Floors!"
-    puts ""
+    site = 'https://themasterscraft.com/'
+    scrape = Nokogiri::HTML(open(site))
+    puts scrape
   end
 
 end
