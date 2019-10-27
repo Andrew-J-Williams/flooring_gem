@@ -12,9 +12,16 @@ class FlooringGem::Scraper
   end
 
   def city_names
+    city_names = []
     doc = Nokogiri::HTML(open(site + "/contact/"))
-    city_names = doc.css("h3").text
-    puts city_names
+    cities = doc.css("h3")
+
+    cities.map do |name|
+      city_names << name.text.strip
+    end
+
+    city_names
+
   end
 
 end
