@@ -23,12 +23,8 @@ class FlooringGem::CLI
       puts "Thanks for visiting! Come back soon!"
       exit
     elsif user_choice.to_i == 1
-      puts ""
-      puts "Enter the city where the store is located. Enter 'menu' to choose a different resource."
-      puts ""
-      user_choice = gets.strip
+      FlooringGem::Inventory.new.find_products
       menu
-
     else
       puts ""
       puts "I'm sorry, that was an invalid selection. Please try again."
@@ -39,7 +35,7 @@ class FlooringGem::CLI
   end
 
   def choose_city(city)
-    
+
 
   end
 
