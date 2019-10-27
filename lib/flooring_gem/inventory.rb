@@ -27,4 +27,26 @@ class FlooringGem::Inventory
     end
     @@title
   end
+
+  def find_products
+    data = self.create_records
+    puts ""
+    puts "Enter the name of the store's city to view stock:"
+    city = gets.strip
+
+    data_hash = data[city]
+
+    if data_hash != nil
+      data_hash.each do |key, value|
+        puts ""
+        puts "#{key}: #{value}"
+      end
+    else
+      puts ""
+      puts "Sorry, we do not have a store at this location."
+      find_products
+    end
+
+  end
+
 end
