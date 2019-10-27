@@ -5,6 +5,4 @@ class FlooringGem::Scraper
     puts doc
   end
 
-  def 
-
 end
