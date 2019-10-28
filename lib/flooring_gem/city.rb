@@ -6,10 +6,15 @@ class FlooringGem::City
   def initialize(name)
     @name = name
     @inventory = []
+    @@all << self
   end
 
   def self.all
-    
+    @@all
+  end
+
+  def get_locations
+
   end
 
 
