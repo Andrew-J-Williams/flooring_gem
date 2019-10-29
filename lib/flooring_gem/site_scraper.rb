@@ -16,10 +16,19 @@ class FlooringGem::SiteScraper
     cities.each do |name|
         FlooringGem::City.new(name)
     end
-    
+
   end
 
+  def self.scrape_products
+    doc = Nokogiri::HTML(open("https://www.lumberliquidators.com/ll/s/hardwood-flooring"))
+    product_array = []
 
+    data.each do |name|
+      product_array << name.text.strip
+    end
+    product_array
+
+  end
 
 
 end

@@ -14,8 +14,8 @@ class FlooringGem::City
     @@all
   end
 
-  def get_locations
-
+  def check_inventory
+    
   end
 
 
