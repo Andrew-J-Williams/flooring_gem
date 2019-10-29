@@ -10,6 +10,7 @@ class FlooringGem::City
   end
 
   def self.all
+    FlooringGem::SiteScraper.scrape_cities if @@all.empty?
     @@all
   end
 

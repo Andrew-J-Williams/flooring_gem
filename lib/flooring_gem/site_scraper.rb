@@ -7,9 +7,8 @@ class FlooringGem::SiteScraper
 
     data.each do |city|
       name = city.text.strip
-      puts name
+      FlooringGem::City.new(name)
     end
-
   end
 
 
