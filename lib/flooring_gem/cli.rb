@@ -34,7 +34,7 @@ class FlooringGem::CLI
     city.check_inventory
     puts "Here are products for #{city.name}"
     city.inventory.each.with_index(1) do |product, idx|
-      puts "#{idx}. #{product.name}"
+      puts "#{idx}. #{product.name} =#{product.price} (#{product.quantity})" 
     end
 
   end
