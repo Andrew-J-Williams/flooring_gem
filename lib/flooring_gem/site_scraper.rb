@@ -7,8 +7,16 @@ class FlooringGem::SiteScraper
 
     data.each do |city|
       name = city.text.strip
-      FlooringGem::City.new(name)
+      cities << name
     end
+
+    cities.delete("\u00A0")
+    cities.delete("")
+
+    cities.each do |name|
+        FlooringGem::City.new(name)
+    end
+    
   end
 
 
