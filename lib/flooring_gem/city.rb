@@ -15,8 +15,7 @@ class FlooringGem::City
   end
 
   def check_inventory
-    
+    FlooringGem::SiteScraper.scrape_products(self) if @inventory.empty?
   end
-
 
 end

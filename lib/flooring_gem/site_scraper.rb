@@ -19,14 +19,15 @@ class FlooringGem::SiteScraper
 
   end
 
-  def self.scrape_products
-    doc = Nokogiri::HTML(open("https://www.lumberliquidators.com/ll/s/hardwood-flooring"))
-    product_array = []
+  def self.scrape_products(city)
+    doc = Nokogiri::HTML(open("https://schillings.com/product-category/flooring/hardwood/"))
 
-    data.each do |name|
-      product_array << name.text.strip
+    doc.css("ul.products li").each do |element|
+      name = element.css("h2.woocommerce-loop-product__title").text.strip
+      quantity = rand(500..1500).to_s + " sqft"
+      price = element.css("span.wc-measurement-price-calculator-price").text.strip
+      FlooringGem::Products.new(name, city, quantity, price)
     end
-    product_array
 
   end
 

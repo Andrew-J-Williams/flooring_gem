@@ -9,11 +9,16 @@ class FlooringGem::Products
     @quantity = quantity
     @price = price
 
+    add_to_location
     @@all << self
   end
 
   def self.all
     @@all
+  end
+
+  def add_to_location
+    @city.inventory << self unless @city.inventory.include?(self)
   end
 
 end
