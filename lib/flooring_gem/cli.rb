@@ -9,6 +9,8 @@ class FlooringGem::CLI
       cities
       cities_list
       user_selection
+      repeat?
+    end
   end
 
   def cities
@@ -54,5 +56,12 @@ class FlooringGem::CLI
   end
 
   def repeat?
+    puts "To view another city's inventory, press any key."
+    puts "To close this program, enter 'exit'."
+    @user_choice = gets.strip
+    puts ""
+  end
 
+  def farewell
+    puts "Stop by again sometime soon!"
   end
