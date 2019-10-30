@@ -16,7 +16,6 @@ class FlooringGem::SiteScraper
     cities.each do |name|
         FlooringGem::City.new(name)
     end
-
   end
 
   def self.scrape_products(city)
@@ -28,7 +27,6 @@ class FlooringGem::SiteScraper
       price = element.css("span.wc-measurement-price-calculator-price").text.strip
       FlooringGem::Products.new(name, city, quantity, price)
     end
-
   end
 
 

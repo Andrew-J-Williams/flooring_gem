@@ -2,28 +2,35 @@ class FlooringGem::CLI
 
   def call
     puts ""
-    puts "Welcome to Craftsmen Floors!"
+    puts "Welcome to Craftsmen Floors! Your one-stop shop for all things hardwood."
     puts ""
-    get_cities
-    list_cities
-    get_user_city
+
+    while @user_choice != 'exit' || @user_choice != 'Exit'
+      cities
+      cities_list
+      get_user_city
   end
 
-  def get_cities
+  def cities
     @city = FlooringGem::City.all
   end
 
-  def list_cities
-    puts 'Choose a city to see inventory.'
+  def cities_list
+    puts "We have 12 locations across the United States, as seen below:"
     @city.each.with_index(1) do |city, index|
       puts "#{index}. #{city.name}"
     end
+    puts ""
+    puts "To view a store's inventory, enter the number next to the city name: "
   end
 
   def get_user_city
-   chosen_city = gets.strip.to_i
-   show_inventory_for(chosen_city) if valid_input(chosen_city, @city)
- end
+   city_choice = gets.strip.to_i
+
+   if valid_input(city_choice, @city)
+     show_inventory_for(city_choice)
+   end
+  end
 
  def valid_input(input, data)
    input.to_i <= data.length && input.to_i > 0
@@ -34,7 +41,7 @@ class FlooringGem::CLI
     city.check_inventory
     puts "Here are products for #{city.name}"
     city.inventory.each.with_index(1) do |product, idx|
-      puts "#{idx}. #{product.name} =#{product.price} (#{product.quantity})" 
+      puts "#{idx}. #{product.name} =#{product.price} (#{product.quantity})"
     end
 
   end
