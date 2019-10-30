@@ -1,10 +1,11 @@
 class FlooringGem::City
 
-  attr_accessor :name, :inventory
+  attr_accessor :name, :inventory, :contact
   @@all = []
 
   def initialize(name)
     @name = name
+    @contact = []
     @inventory = []
     @@all << self
   end

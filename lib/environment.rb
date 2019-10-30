@@ -4,6 +4,7 @@ require 'nokogiri'
 
 require_relative "./flooring_gem/version"
 require_relative "./flooring_gem/cli"
+require_relative "./flooring_gem/contact"
 require_relative "./flooring_gem/site_scraper"
 require_relative "./flooring_gem/city"
 require_relative "./flooring_gem/products"
