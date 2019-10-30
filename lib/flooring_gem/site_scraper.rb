@@ -1,22 +1,22 @@
 class FlooringGem::SiteScraper
 
-  def self.scrape_cities
-    doc = Nokogiri::HTML(open('https://themasterscraft.com/contact/'))
-    data = doc.css("h3")
-    cities = []
+    def self.scrape_cities
+      doc = Nokogiri::HTML(open('https://themasterscraft.com/contact/'))
+      data = doc.css("h3")
+      cities = []
 
-    data.each do |city|
-      name = city.text.strip
-      cities << name
-    end
+      data.each do |city|
+        name = city.text.strip
+        cities << name
+      end
 
-    cities.delete("\u00A0")
-    cities.delete("")
+      cities.delete("\u00A0")
+      cities.delete("")
 
-    cities.each do |name|
+      cities.each do |name|
         FlooringGem::City.new(name)
+      end
     end
-  end
 
   def self.scrape_products(city)
     doc = Nokogiri::HTML(open("https://schillings.com/product-category/flooring/hardwood/"))
@@ -28,6 +28,5 @@ class FlooringGem::SiteScraper
       FlooringGem::Products.new(name, city, quantity, price)
     end
   end
-
 
 end

@@ -5,12 +5,13 @@ class FlooringGem::CLI
     puts "Welcome to Craftsmen Floors! Your one-stop shop for all things hardwood."
     puts ""
 
-    while @user_choice != 'exit' || @user_choice != 'Exit'
+    unless @user_choice == "exit" || @user_choice == "Exit"
       cities
       cities_list
       user_selection
       repeat?
     end
+    farewell
   end
 
   def cities
@@ -64,4 +65,7 @@ class FlooringGem::CLI
 
   def farewell
     puts "Stop by again sometime soon!"
+    puts ""
   end
+
+end
