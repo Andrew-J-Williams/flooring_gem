@@ -8,6 +8,7 @@ class FlooringGem::Contact
     @city = city
     @phone = phone
 
+    create_contact_info
     @@all << self
   end
 
@@ -15,6 +16,9 @@ class FlooringGem::Contact
     @@all
   end
 
-  
+  def create_contact_info
+    @city.contact << self unless @city.contact.include?(self)
+  end
+
 
 end

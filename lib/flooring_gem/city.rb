@@ -19,4 +19,8 @@ class FlooringGem::City
     FlooringGem::SiteScraper.scrape_products(self) if @inventory.empty?
   end
 
+  def get_contact_info
+    FlooringGem::SiteScraper.scrape_contact(self) if @contact.empty?
+  end
+
 end

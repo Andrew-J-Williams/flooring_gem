@@ -29,4 +29,22 @@ class FlooringGem::SiteScraper
     end
   end
 
+  def self.scrape_contact(city)
+    url = 'https://themasterscraft.com/contact/'
+    city_name = city.name
+    doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
+    scrape = doc.css("div.builder-text-content p").text.strip
+
+    a = "4pm"
+    b = "Get"
+    c = " "
+    d = "CONTACT"
+
+    address = "Address: #{scrape[/#{a}(.*?)#{b}/m, 1]}"
+    phone = "Phone: #{scrape[/#{c}(.*?)#{d}/m, 1]}"
+
+    FlooringGem::Contact.new(address, city, phone)
+
+  end
+
 end
