@@ -40,8 +40,8 @@ class FlooringGem::SiteScraper
     c = " "
     d = "CONTACT"
 
-    address = "Address: #{scrape[/#{a}(.*?)#{b}/m, 1]}"
-    phone = "Phone: #{scrape[/#{c}(.*?)#{d}/m, 1]}"
+    address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
+    phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
 
     FlooringGem::Contact.new(address, city, phone)
 
