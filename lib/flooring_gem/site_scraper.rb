@@ -68,7 +68,7 @@ class FlooringGem::SiteScraper
       a = " "
       b = "90 "
       c = "3"
-      d = " Directions"
+      d = "Get"
 
       address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
       phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
