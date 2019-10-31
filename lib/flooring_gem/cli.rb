@@ -7,8 +7,7 @@ class FlooringGem::CLI
 
     unless @user_choice == "exit" || @user_choice == "Exit"
       cities
-      cities_list
-      user_selection
+      user_menu_choice
       repeat?
     end
     farewell
@@ -23,13 +22,33 @@ class FlooringGem::CLI
     @city.each.with_index(1) do |city, index|
       puts "#{index}. #{city.name}"
     end
-
-    puts ""
-    puts "To view a store's inventory, enter the number next to the city name: "
   end
 
-  def user_selection
-   city_choice = gets.strip.to_i
+  def user_menu_choice
+    puts ""
+    puts "Choose one of the following options:"
+    puts "1. View Store Inventory"
+    puts "2. Store Contact Information"
+    menu_choice = gets.strip.to_i
+
+    if menu_choice == 1
+
+    elsif menu_choice == 2
+      user_choose_city
+    else
+      puts ""
+      puts "Invalid menu selection!"
+      user_selection
+    end
+
+  end
+
+  def user_choose_city
+    puts ""
+    cities_list
+    puts ""
+    puts "To view a store's inventory, enter the number next to the city name: "
+    city_choice = gets.strip.to_i
 
    if city_choice > @city.length
      puts ""
@@ -42,6 +61,27 @@ class FlooringGem::CLI
    else
       show_inventory_for(city_choice)
    end
+  end
+
+  def user_view_contact
+    puts ""
+    cities_list
+    puts ""
+    puts "To view a store's contact information, enter the number next to the city name: "
+    city_choice = gets.strip.to_i
+
+    if city_choice > @city.length
+      puts ""
+      puts "Sorry, but you entered #{city_choice}. We only have 12 locations. Please enter a different value to continue: "
+      user_selection
+    elsif city_choice <= 0
+      puts ""
+      puts "Let's stay positive here! Try entering another number greater than 0 to continue:"
+      user_selection
+    else
+       show_inventory_for(city_choice)
+    end
+
   end
 
   def show_inventory_for(city_choice)
