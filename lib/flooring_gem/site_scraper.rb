@@ -31,20 +31,50 @@ class FlooringGem::SiteScraper
 
   def self.scrape_contact(city)
     url = 'https://themasterscraft.com/contact/'
-    city_name = city.name
-    doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
-    scrape = doc.css("div.builder-text-content p").text.strip
 
-    a = "4pm"
-    b = "Get"
-    c = " "
-    d = "CONTACT"
+    if city.name != "Denver"
+      if city.name == "Cedar Rapids" || city.name == "Oklahoma City"
+        city_name = city.name.sub!(" ", "-")
+      elsif city.name == "West Plains"
+        city_name = city.name.sub(" Plains", "Plains")
+      elsif city.name == "St. Louis"
+        city_name = city.name.sub!(". Louis", "Louis")
+      elsif city.name == "NW Arkansas"
+        city_name = city.name.sub!(" Arkansas", "Arkansas")
+      elsif city.name == "Kansas City"
+        puts "Website is currently down for #{city.name} location. Apologies."
+      else
+        city_name = city.name
+      end
 
-    address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
-    phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+      doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
+      scrape = doc.css("div.builder-text-content p").text.strip
 
-    FlooringGem::Contact.new(address, city, phone)
+      a = "4pm"
+      b = "Get"
+      c = " "
+      d = "CONTACT"
 
+      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
+      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+
+      FlooringGem::Contact.new(address, city, phone)
+    else
+      city_name = city.name
+
+      doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
+      scrape = doc.css("div.builder-text-content p").text.strip
+
+      a = " "
+      b = "90 "
+      c = "3"
+      d = " Directions"
+
+      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
+      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+
+      FlooringGem::Contact.new(address, city, phone)
+    end
   end
 
 end
