@@ -5,7 +5,7 @@ class FlooringGem::CLI
     puts "Welcome to Craftsmen Floors! Your one-stop shop for all things hardwood."
     puts ""
 
-    unless @user_choice == "exit" || @user_choice == "Exit"
+    until @user_choice == "exit" || @user_choice == "Exit"
       cities
       user_menu_choice
       repeat?
@@ -30,15 +30,16 @@ class FlooringGem::CLI
     puts "1. View Store Inventory"
     puts "2. Store Contact Information"
     menu_choice = gets.strip.to_i
+    puts ""
 
     if menu_choice == 1
-
-    elsif menu_choice == 2
       user_choose_city
+    elsif menu_choice == 2
+      user_view_contact
     else
       puts ""
       puts "Invalid menu selection!"
-      user_selection
+      user_menu_choice
     end
 
   end
@@ -61,6 +62,7 @@ class FlooringGem::CLI
    else
       show_inventory_for(city_choice)
    end
+
   end
 
   def user_view_contact
@@ -79,7 +81,7 @@ class FlooringGem::CLI
       puts "Let's stay positive here! Try entering another number greater than 0 to continue:"
       user_selection
     else
-       show_inventory_for(city_choice)
+       show_contact_for(city_choice)
     end
 
   end
@@ -96,8 +98,20 @@ class FlooringGem::CLI
     puts ""
   end
 
+  def show_contact_for(city_choice)
+    city = @city[city_choice - 1]
+    city.get_contact_info
+    puts ""
+    city.contact.each do |location|
+      puts "#{city.name} Store Address: #{location.address}"
+      puts "Main Phone: #{location.phone}"
+    end
+
+    puts ""
+  end
+
   def repeat?
-    puts "To view another city's inventory, press any key."
+    puts "To return to the Main Menu, press any key."
     puts "To close this program, enter 'exit'."
     @user_choice = gets.strip
     puts ""
