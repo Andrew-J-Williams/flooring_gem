@@ -13,10 +13,6 @@ class FlooringGem::CLI
     farewell
   end
 
-#  def cities
-#    @city = FlooringGem::City.all
-#  end
-
   def cities_list
     @city = FlooringGem::City.all
     puts "We have 12 locations across the United States, as seen below:"
@@ -47,8 +43,6 @@ class FlooringGem::CLI
 
   def user_choose_city
     puts ""
-  #  cities_list
-  #  puts ""
     puts "To view a store's inventory, enter the number next to the city name: "
     city_choice = gets.strip.to_i
 
@@ -68,8 +62,6 @@ class FlooringGem::CLI
 
   def user_view_contact
     puts ""
-  #  cities_list
-  #  puts ""
     puts "To view a store's contact information, enter the number next to the city name: "
     city_choice = gets.strip.to_i
 
