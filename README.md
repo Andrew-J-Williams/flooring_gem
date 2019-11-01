@@ -1,6 +1,6 @@
 # FlooringGem
 
-This Flooring Gem application provides the user with information regarding 12 different flooring stores nationwide. The user is given two options after the program displays each location: (1) A inventory report for the selected location that includes product name, quantity, and price along with (2) contact information for the selected location that includes an address and a phone number.
+This Flooring Gem application provides the user with information regarding 12 different flooring stores nationwide. The user is given two options after the program displays each location: (1) An inventory report for the selected location that includes product name, quantity, and price along with (2) contact information for the selected location that includes an address and a phone number.
 
 ## Installation
 
