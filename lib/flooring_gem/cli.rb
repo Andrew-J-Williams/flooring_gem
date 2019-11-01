@@ -5,7 +5,7 @@ class FlooringGem::CLI
     puts "Welcome to Craftsmen Floors! Your one-stop shop for all things hardwood."
     puts ""
 
-    until @user_choice == "exit" || @user_choice == "Exit"
+    until @user_choice == "exit" || @user_choice == "quit"
       cities_list
       user_menu_choice
       repeat?
@@ -105,7 +105,7 @@ class FlooringGem::CLI
 
   def repeat?
     puts "To return to the Main Menu, press any key."
-    puts "To close this program, enter 'exit'."
+    puts "To close this program, enter 'exit' or 'quit'."
     @user_choice = gets.strip
     puts ""
   end

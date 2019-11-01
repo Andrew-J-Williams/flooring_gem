@@ -49,19 +49,80 @@ class FlooringGem::SiteScraper
 
       FlooringGem::Contact.new(address.sub!("BlvdDenver", "Blvd Denver"), city, phone)
 
+    elsif city.name == "Austin"
+
+      city_name = city.name
+
+      doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
+      scrape = doc.css("div.builder-text-content p").text.strip
+
+      a = "4pm"
+      b = "Get"
+      c = " "
+      d = "CONTACT"
+
+      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
+      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+
+      FlooringGem::Contact.new(address.sub!("BlvdAustin", "Blvd Austin"), city, phone)
+
+    elsif city.name == "Cedar Rapids"
+      city_name = city.name.sub!(" ", "-")
+
+      doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
+      scrape = doc.css("div.builder-text-content p").text.strip
+
+      a = "4pm"
+      b = "Get"
+      c = " "
+      d = "CONTACT"
+
+      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
+      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+
+      FlooringGem::Contact.new(address.sub!("SWCedar", "SW Cedar"), city, phone)
+
+    elsif city.name == "NW Arkansas"
+      city_name = city.name.sub!(" Arkansas", "Arkansas")
+
+      doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
+      scrape = doc.css("div.builder-text-content p").text.strip
+
+      a = "4pm"
+      b = "Get"
+      c = " "
+      d = "CONTACT"
+
+      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
+      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+
+      FlooringGem::Contact.new(address.sub!("StreetBethel", "Street Bethel"), city, phone)
+
+    elsif city.name == "Oklahoma City"
+      city_name = city.name.sub!(" ", "-")
+
+      doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
+      scrape = doc.css("div.builder-text-content p").text.strip
+
+      a = "4pm"
+      b = "Get"
+      c = " "
+      d = "CONTACT"
+
+      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
+      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+
+      FlooringGem::Contact.new(address.sub!("StreetOklahoma", "Street Oklahoma"), city, phone)
+
     else
 
-      if city.name == "Cedar Rapids" || city.name == "Oklahoma City"
-        city_name = city.name.sub!(" ", "-")
-      elsif city.name == "West Plains"
+      if city.name == "West Plains"
         city_name = city.name.sub(" Plains", "Plains")
       elsif city.name == "St. Louis"
         city_name = city.name.sub!(". Louis", "Louis")
-      elsif city.name == "NW Arkansas"
-        city_name = city.name.sub!(" Arkansas", "Arkansas")
       elsif city.name == "Kansas City"
         puts ""
-        puts "Website is currently down for #{city.name} location. Apologies."
+        puts "Website is currently down for #{city.name} location. Cannot display contact information!"
       else
         city_name = city.name
       end
@@ -81,5 +142,6 @@ class FlooringGem::SiteScraper
 
     end
   end
+
 
 end
