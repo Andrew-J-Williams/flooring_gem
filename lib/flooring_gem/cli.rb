@@ -6,7 +6,6 @@ class FlooringGem::CLI
     puts ""
 
     until @user_choice == "exit" || @user_choice == "quit"
-      cities_list
       user_menu_choice
       repeat?
     end
@@ -22,17 +21,21 @@ class FlooringGem::CLI
   end
 
   def user_menu_choice
+    cities_list
     puts ""
-    puts "Choose one of the following options:"
+    puts "Choose one of the following options (or enter 'exit'/'quit' to leave):"
     puts "1. View Store Inventory"
     puts "2. Store Contact Information"
-    menu_choice = gets.strip.to_i
+    menu_choice = gets.strip
     puts ""
 
-    if menu_choice == 1
+    if menu_choice.to_i == 1
       user_choose_city
-    elsif menu_choice == 2
+    elsif menu_choice.to_i == 2
       user_view_contact
+    elsif menu_choice == "exit" || menu_choice == "quit"
+      farewell
+      exit
     else
       puts ""
       puts "Invalid menu selection!"
