@@ -2,6 +2,8 @@
 
 This Flooring Gem application provides the user with information regarding 12 different flooring stores nationwide. The user is given two options after the program displays each location: (1) An inventory report for the selected location that includes product name, quantity, and price along with (2) contact information for the selected location that includes an address and a phone number.
 
+If they choose to view a location's inventory or its contact information, they will need to enter the number that corresponds with the city's name. Once the information has been returned to the user, they have the option to either return to the main menu or to close the program.
+
 ## Installation
 
 Add this line to your application's Gemfile:
