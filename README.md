@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Type the below and follow the on screen prompts:
+Type the code below in the command line and follow the on screen prompts:
 
     ./bin/craftsmen_floors
 
