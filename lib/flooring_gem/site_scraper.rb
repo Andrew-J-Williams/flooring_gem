@@ -103,7 +103,7 @@ class FlooringGem::SiteScraper
 
       case city.name
       when "West Plains"
-        city_name = city.name.sub(" Plains", "Plains")
+        city_name = city.name.sub!(" Plains", "Plains")
       when "St. Louis"
         city_name = city.name.sub!(". Louis", "Louis")
       when "Kansas City"
