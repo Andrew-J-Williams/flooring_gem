@@ -18,6 +18,7 @@ class FlooringGem::SiteScraper
       end
     end
 
+
   def self.scrape_products(city)
     doc = Nokogiri::HTML(open("https://schillings.com/product-category/flooring/hardwood/"))
 
@@ -29,11 +30,12 @@ class FlooringGem::SiteScraper
     end
   end
 
+
   def self.scrape_contact(city)
     url = 'https://themasterscraft.com/contact/'
 
-    if city.name == "Denver"
-
+    case city.name
+    when "Denver"
       city_name = city.name
 
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
@@ -49,8 +51,7 @@ class FlooringGem::SiteScraper
 
       FlooringGem::Contact.new(address.sub!("BlvdDenver", "Blvd Denver"), city, phone)
 
-    elsif city.name == "Austin"
-
+    when "Austin"
       city_name = city.name
 
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
@@ -66,7 +67,7 @@ class FlooringGem::SiteScraper
 
       FlooringGem::Contact.new(address.sub!("BlvdAustin", "Blvd Austin"), city, phone)
 
-    elsif city.name == "Cedar Rapids"
+    when "Cedar Rapids"
       city_name = city.name.sub!(" ", "-")
 
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
@@ -82,7 +83,7 @@ class FlooringGem::SiteScraper
 
       FlooringGem::Contact.new(address.sub!("SWCedar", "SW Cedar"), city, phone)
 
-    elsif city.name == "NW Arkansas"
+    when "NW Arkansas"
       city_name = city.name.sub!(" Arkansas", "Arkansas")
 
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
@@ -98,7 +99,7 @@ class FlooringGem::SiteScraper
 
       FlooringGem::Contact.new(address.sub!("StreetBethel", "Street Bethel"), city, phone)
 
-    elsif city.name == "Oklahoma City"
+    when "Oklahoma City"
       city_name = city.name.sub!(" ", "-")
 
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
@@ -116,13 +117,15 @@ class FlooringGem::SiteScraper
 
     else
 
-      if city.name == "West Plains"
+      case city.name
+      when "West Plains"
         city_name = city.name.sub(" Plains", "Plains")
-      elsif city.name == "St. Louis"
+      when "St. Louis"
         city_name = city.name.sub!(". Louis", "Louis")
-      elsif city.name == "Kansas City"
+      when "Kansas City"
         puts ""
         puts "Website is currently down for #{city.name} location. Cannot display contact information!"
+        puts ""
       else
         city_name = city.name
       end
