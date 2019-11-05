@@ -1,5 +1,14 @@
 class FlooringGem::SiteScraper
 
+  @a = "4pm"
+  @b = "Get"
+  @c = " "
+  @d = "CONTACT"
+  @e = " "
+  @f = "90 "
+  @g = "3"
+  @h = "Get"
+
     def self.scrape_cities
       doc = Nokogiri::HTML(open('https://themasterscraft.com/contact/'))
       data = doc.css("h3")
@@ -41,13 +50,8 @@ class FlooringGem::SiteScraper
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
       scrape = doc.css("div.builder-text-content p").text.strip
 
-      a = " "
-      b = "90 "
-      c = "3"
-      d = "Get"
-
-      address = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
-      phone = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
+      address = "#{scrape[/#{@g}(.*?)#{@h}/m, 1]}"
+      phone = "#{scrape[/#{@e}(.*?)#{@f}/m, 1]}"
 
       FlooringGem::Contact.new(address.sub!("BlvdDenver", "Blvd Denver"), city, phone)
 
@@ -57,13 +61,8 @@ class FlooringGem::SiteScraper
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
       scrape = doc.css("div.builder-text-content p").text.strip
 
-      a = "4pm"
-      b = "Get"
-      c = " "
-      d = "CONTACT"
-
-      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
-      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+      address = "#{scrape[/#{@a}(.*?)#{@b}/m, 1]}"
+      phone = "#{scrape[/#{@c}(.*?)#{@d}/m, 1]}"
 
       FlooringGem::Contact.new(address.sub!("BlvdAustin", "Blvd Austin"), city, phone)
 
@@ -73,13 +72,8 @@ class FlooringGem::SiteScraper
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
       scrape = doc.css("div.builder-text-content p").text.strip
 
-      a = "4pm"
-      b = "Get"
-      c = " "
-      d = "CONTACT"
-
-      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
-      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+      address = "#{scrape[/#{@a}(.*?)#{@b}/m, 1]}"
+      phone = "#{scrape[/#{@c}(.*?)#{@d}/m, 1]}"
 
       FlooringGem::Contact.new(address.sub!("SWCedar", "SW Cedar"), city, phone)
 
@@ -89,13 +83,8 @@ class FlooringGem::SiteScraper
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
       scrape = doc.css("div.builder-text-content p").text.strip
 
-      a = "4pm"
-      b = "Get"
-      c = " "
-      d = "CONTACT"
-
-      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
-      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+      address = "#{scrape[/#{@a}(.*?)#{@b}/m, 1]}"
+      phone = "#{scrape[/#{@c}(.*?)#{@d}/m, 1]}"
 
       FlooringGem::Contact.new(address.sub!("StreetBethel", "Street Bethel"), city, phone)
 
@@ -105,13 +94,8 @@ class FlooringGem::SiteScraper
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
       scrape = doc.css("div.builder-text-content p").text.strip
 
-      a = "4pm"
-      b = "Get"
-      c = " "
-      d = "CONTACT"
-
-      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
-      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+      address = "#{scrape[/#{@a}(.*?)#{@b}/m, 1]}"
+      phone = "#{scrape[/#{@c}(.*?)#{@d}/m, 1]}"
 
       FlooringGem::Contact.new(address.sub!("StreetOklahoma", "Street Oklahoma"), city, phone)
 
@@ -133,13 +117,8 @@ class FlooringGem::SiteScraper
       doc = Nokogiri::HTML(open(url + "/#{city_name}/"))
       scrape = doc.css("div.builder-text-content p").text.strip
 
-      a = "4pm"
-      b = "Get"
-      c = " "
-      d = "CONTACT"
-
-      address = "#{scrape[/#{a}(.*?)#{b}/m, 1]}"
-      phone = "#{scrape[/#{c}(.*?)#{d}/m, 1]}"
+      address = "#{scrape[/#{@a}(.*?)#{@b}/m, 1]}"
+      phone = "#{scrape[/#{@c}(.*?)#{@d}/m, 1]}"
 
       FlooringGem::Contact.new(address, city, phone)
 
