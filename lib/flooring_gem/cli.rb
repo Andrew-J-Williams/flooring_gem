@@ -23,24 +23,41 @@ class FlooringGem::CLI
   def user_menu_choice
     cities_list
     puts ""
-    puts "Choose one of the following options (or enter 'exit'/'quit' to leave):"
+    puts "Choose one of the following options (or enter 'quit' to leave):"
     puts "1. View Store Inventory"
     puts "2. Store Contact Information"
     menu_choice = gets.strip
     puts ""
 
-    if menu_choice.to_i == 1
-      user_choose_city
-    elsif menu_choice.to_i == 2
-      user_view_contact
-    elsif menu_choice == "exit" || menu_choice == "quit"
-      farewell
-      exit
-    else
-      puts ""
-      puts "Invalid menu selection!"
-      user_menu_choice
+    case menu_choice
+
+      when '1'
+        user_choose_city
+      when '2'
+        user_view_contact
+      when "quit"
+        farewell
+        exit
+      else
+        puts ""
+        puts "Invalid menu selection!"
+        puts ""
+        user_menu_choice
+
     end
+
+    #if menu_choice.to_i == 1
+    #  user_choose_city
+    #elsif menu_choice.to_i == 2
+    #  user_view_contact
+    #elsif menu_choice == "exit" || menu_choice == "quit"
+    #  farewell
+    #  exit
+    #else
+    #  puts ""
+    #  puts "Invalid menu selection!"
+    #  user_menu_choice
+    #end
 
   end
 
