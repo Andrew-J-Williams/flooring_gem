@@ -5,7 +5,8 @@ class FlooringGem::CLI
     puts "Welcome to Craftsmen Floors! Your one-stop shop for all things hardwood."
     puts ""
 
-    until @user_choice == "exit" || @user_choice == "quit"
+    until @user_choice == "quit"
+      cities_list
       user_menu_choice
       repeat?
     end
@@ -21,7 +22,6 @@ class FlooringGem::CLI
   end
 
   def user_menu_choice
-    cities_list
     puts ""
     puts "Choose one of the following options (or enter 'quit' to leave):"
     puts "1. View Store Inventory"
@@ -30,51 +30,37 @@ class FlooringGem::CLI
     puts ""
 
     case menu_choice
-
-      when '1'
-        user_choose_city
-      when '2'
-        user_view_contact
-      when "quit"
-        farewell
-        exit
-      else
-        puts ""
-        puts "Invalid menu selection!"
-        puts ""
-        user_menu_choice
-
+    when '1'
+      user_choose_city
+    when '2'
+      user_view_contact
+    when "quit"
+      farewell
+      exit
+    else
+      puts ""
+      puts "Invalid Menu Selection! Try again below."
+      puts ""
+      user_menu_choice
     end
-
-    #if menu_choice.to_i == 1
-    #  user_choose_city
-    #elsif menu_choice.to_i == 2
-    #  user_view_contact
-    #elsif menu_choice == "exit" || menu_choice == "quit"
-    #  farewell
-    #  exit
-    #else
-    #  puts ""
-    #  puts "Invalid menu selection!"
-    #  user_menu_choice
-    #end
-
   end
+
 
   def user_choose_city
     puts ""
     puts "To view a store's inventory, enter the number next to the city name: "
     city_choice = gets.strip.to_i
 
-   if city_choice > @city.length
-     puts ""
-     puts "Sorry, but you entered #{city_choice}. We only have 12 locations. Please enter a different value to continue. "
-     user_choose_city
-   elsif city_choice <= 0
-     puts ""
-     puts "Let's stay positive here! Try entering another number greater than 0 to continue."
-     user_choose_city
-   else
+
+    if city_choice > @city.length
+      puts ""
+      puts "Sorry, but you entered #{city_choice}. We only have 12 locations. Please enter a different value to continue. "
+      user_choose_city
+    elsif city_choice <= 0
+      puts ""
+      puts "Let's stay positive here! Try entering another number greater than 0 to continue."
+      user_choose_city
+    else
       show_inventory_for(city_choice)
    end
 
@@ -125,7 +111,7 @@ class FlooringGem::CLI
 
   def repeat?
     puts "To return to the Main Menu, press any key."
-    puts "To close this program, enter 'exit' or 'quit'."
+    puts "To close this program, enter 'quit'."
     @user_choice = gets.strip
     puts ""
   end
