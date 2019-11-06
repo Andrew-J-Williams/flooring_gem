@@ -6,7 +6,6 @@ class FlooringGem::CLI
     puts ""
 
     until @user_choice == "quit"
-      cities_list
       user_menu_choice
       repeat?
     end
@@ -47,6 +46,7 @@ class FlooringGem::CLI
 
 
   def user_choose_city
+    cities_list
     puts ""
     puts "To view a store's inventory, enter the number next to the city name: "
     city_choice = gets.strip.to_i
@@ -67,6 +67,7 @@ class FlooringGem::CLI
   end
 
   def user_view_contact
+    cities_list
     puts ""
     puts "To view a store's contact information, enter the number next to the city name: "
     city_choice = gets.strip.to_i
